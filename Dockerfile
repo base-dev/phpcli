@@ -5,7 +5,7 @@ FROM debian:jessie
 RUN apt-get update && \
     echo "deb http://packages.dotdeb.org jessie all" \
     >> /etc/apt/sources.list && \
-    apt-get install -y wget && \
+    apt-get install -y apt-utils wget && \
     wget https://www.dotdeb.org/dotdeb.gpg && \
     apt-key add dotdeb.gpg && \
     rm dotdeb.gpg && \
