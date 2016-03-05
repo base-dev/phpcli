@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM tghs/cli
 
 # We need to add a debian repo to find php7
 
@@ -14,5 +14,11 @@ RUN apt-get update && \
     && apt-get update -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install php7.0-cli -y
 
-ENTRYPOINT ["php"]
+RUN mkdir -p /data && chown worker /data
+VOLUME ["/data"]
+WORKDIR /data
+
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
 CMD ["--help"]
